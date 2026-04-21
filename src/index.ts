@@ -12,10 +12,10 @@ app.get('/hello', (req: Request, res: Response) => {
   res.json({ message: 'Hello, World!' });
 });
 
-// Error handling middleware
+// Error handling middleware - must be registered after all route definitions
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong!' });
+  console.error('Error occurred:', err.stack);
+  res.status(500).json({ message: 'Internal server error' });
 });
 
 // Start server
